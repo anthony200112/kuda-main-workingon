@@ -105,6 +105,8 @@
     <script src="/js/supabase-client.js"></script>
     <script>
         let allReceipts = [];
+        let lastRenderedCount = -1;
+        let lastRenderedIds = '';
 
         window.addEventListener('load', async () => {
             loadReceipts();
@@ -114,6 +116,10 @@
         async function loadReceipts() {
             const receipts = await getAllReceiptsFromCloud();
             allReceipts = receipts;
+            const currentIds = receipts.map(r => r.id).join(',');
+            if (receipts.length === lastRenderedCount && currentIds === lastRenderedIds) return;
+            lastRenderedCount = receipts.length;
+            lastRenderedIds = currentIds;
             const receiptsList = document.getElementById('receiptsList');
             if (receipts.length === 0) {
                 receiptsList.innerHTML = '<div class="admin-empty">Waiting for transactions...</div>';
