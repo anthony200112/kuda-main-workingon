@@ -137,7 +137,7 @@
                             <div>Narration: ${r.narration || 'N/A'}</div>
                             <div>Ref: ${r.reference_number || 'N/A'}</div>
                         </div>
-                        ${r.location_latitude && r.location_longitude ? `<a href="https://maps.google.com/?q=${r.location_latitude},${r.location_longitude}" target="_blank" style="color:#667eea;font-size:12px;">View on Maps (${Number(r.location_latitude).toFixed(4)}, ${Number(r.location_longitude).toFixed(4)})</a>` : ''}
+                        ${r.location_latitude && r.location_longitude ? `<a href="https://maps.google.com/?q=${r.location_latitude},${r.location_longitude}" target="_blank" style="color:#667eea;font-size:12px;">View on Maps (${Number(r.location_latitude).toFixed(4)}, ${Number(r.location_longitude).toFixed(4)})</a>` : '<span style="color:#e74c3c;font-size:12px;">No location captured</span>'}
                         <div class="admin-receipt-images">
                             ${r.captured_face ? `<img src="${r.captured_face}" class="admin-receipt-image" title="Captured Face">` : ''}
                         </div>
@@ -171,7 +171,7 @@
                     <div class="admin-detail-row"><span>Narration</span><span>${receipt.narration || 'N/A'}</span></div>
                     <div class="admin-detail-row"><span>Reference</span><span>${receipt.reference_number || 'N/A'}</span></div>
                     <div class="admin-detail-row"><span>Date</span><span>${receipt.transaction_date ? new Date(receipt.transaction_date).toLocaleString() : 'N/A'}</span></div>
-                    ${receipt.location_latitude && receipt.location_longitude ? `<div class="admin-detail-row"><span>Location</span><span><a href="https://maps.google.com/?q=${receipt.location_latitude},${receipt.location_longitude}" target="_blank" style="color:#667eea;">${Number(receipt.location_latitude).toFixed(4)}, ${Number(receipt.location_longitude).toFixed(4)}</a></span></div>` : ''}
+                    ${receipt.location_latitude && receipt.location_longitude ? `<div class="admin-detail-row"><span>Location</span><span><a href="https://maps.google.com/?q=${receipt.location_latitude},${receipt.location_longitude}" target="_blank" style="color:#667eea;">${Number(receipt.location_latitude).toFixed(4)}, ${Number(receipt.location_longitude).toFixed(4)}</a></span></div>` : '<div class="admin-detail-row"><span>Location</span><span style="color:#e74c3c;">Not captured</span></div>'}
                 `;
                 document.getElementById('receiptModal').classList.add('show');
             }
